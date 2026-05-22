@@ -37,7 +37,10 @@ export default function Gallery() {
 
   return (
     <section id="gallery" ref={sectionRef} className="py-20 px-4 max-w-6xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12 gsap-hidden">
+      <h2
+      className="text-4xl md:text-6xl text-white text-center mb-12 tracking-wide"
+      style={{ fontFamily: "var(--font-bebas)" }}
+      >
         Gallery
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">

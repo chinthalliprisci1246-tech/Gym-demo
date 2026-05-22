@@ -43,7 +43,10 @@ export default function Transformations() {
 
   return (
     <section id="transformations" ref={sectionRef} className="py-20 px-4 max-w-6xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+     <h2
+     className="text-4xl md:text-6xl text-white text-center mb-12 tracking-wide"
+     style={{ fontFamily: "var(--font-bebas)" }}
+    >
         Before / After
       </h2>
       <div className="grid gap-8 md:grid-cols-2">

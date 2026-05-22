@@ -66,7 +66,8 @@ export default function Pricing() {
 
   return (
     <section id="pricing" ref={sectionRef} className="py-20 px-4 max-w-5xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+      <h2 className="text-4xl md:text-6xl text-white text-center mb-12 tracking-wide"
+      style={{ fontFamily: "var(--font-bebas)" }}>
         Pricing
       </h2>
       <div className="grid gap-6 md:grid-cols-3">
@@ -75,7 +76,7 @@ export default function Pricing() {
             key={i}
             className={`plan-card rounded-2xl border p-6 flex flex-col gap-4 ${
               p.highlight
-                ? "bg-white text-black border-white"
+                ? "bg-green-400 text-black border-yellow-400"
                 : "bg-white/5 text-white border-white/10"
             }`}
           >
@@ -99,7 +100,7 @@ export default function Pricing() {
               rel="noopener noreferrer"
               className={`mt-auto text-center py-2.5 rounded-full font-semibold text-sm transition ${
                 p.highlight
-                  ? "bg-black text-white hover:bg-black/80"
+                  ? "bg-black text-white hover:bg-black/80 font-bold"
                   : "bg-white text-black hover:bg-white/90"
               }`}
             >

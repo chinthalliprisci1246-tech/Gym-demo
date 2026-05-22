@@ -1,6 +1,12 @@
 "use client";
 import { useEffect, useRef } from "react";
 
+const stats = [
+  { value: "500+", label: "Members" },
+  { value: "10+", label: "Trainers" },
+  { value: "5 yrs", label: "Experience" },
+];
+
 export default function Hero() {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -40,10 +46,14 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-black/60" />
 
-      <div className="relative z-10 max-w-2xl">
+      <div className="relative z-10 max-w-3xl w-full">
+         <p className="text-yellow-400 text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+          Welcome to
+        </p>
         <h1
           ref={headingRef}
-          className="text-4xl md:text-6xl font-bold text-white leading-tight mb-4"
+          className="font-display text-6xl md:text-8xl text-white leading-none mb-4 tracking-wide"
+          style={{ fontFamily: "var(--font-bebas)" }}
         >
           YOUR GYM NAME {/* TODO */}
         </h1>
@@ -52,8 +62,6 @@ export default function Hero() {
           Tagline — Transform yourself. {/* TODO */}
         </p>
         <a
-        
-        
           href="#contact" // scrolls to contact/form section
           className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition mb-6"
         >
@@ -77,6 +85,22 @@ export default function Hero() {
           >
             💬 WhatsApp
           </a>
+        </div>
+        {/* Stats bar */}
+        <div className="flex justify-center gap-8 sm:gap-16 border-t border-white/20 pt-8">
+          {stats.map((s) => (
+            <div key={s.label} className="text-center">
+              <p
+                className="text-3xl md:text-4xl text-yellow-400"
+                style={{ fontFamily: "var(--font-bebas)" }}
+              >
+                {s.value}
+              </p>
+              <p className="text-white/50 text-xs uppercase tracking-widest mt-1">
+                {s.label}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

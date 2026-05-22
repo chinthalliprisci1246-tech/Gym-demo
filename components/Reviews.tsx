@@ -72,7 +72,7 @@ export default function Reviews() {
   }, []);
 
   return (
-    <section id="reviews" ref={sectionRef} className="py-20 sm:px-2  max-w-xl mx-auto">
+    <section id="reviews" ref={sectionRef} className="py-20 px-4 max-w-5xl mx-auto">
       <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
         What Members Say
       </h2>

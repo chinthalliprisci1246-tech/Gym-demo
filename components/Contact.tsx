@@ -19,7 +19,10 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 px-4 max-w-6xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+      <h2
+      className="text-4xl md:text-6xl text-white text-center mb-12 tracking-wide"
+      style={{ fontFamily: "var(--font-bebas)" }}
+    >
         Contact Us
       </h2>
       <p className="text-white/50 text-center mb-12 text-sm">
