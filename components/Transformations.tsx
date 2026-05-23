@@ -16,21 +16,7 @@ const transformations = [
     loss: "-18 kg",            // TODO
     before: "/images/transformations/before2.jpg",
     after: "/images/transformations/after2.jpg",
-  },
-  {
-    name: "Member Name",
-    duration: "4 months",
-    loss: "-10 kg",            // TODO
-    before: "/images/transformations/before3.jpg",
-    after: "/images/transformations/after3.jpg",
-  },
-  {
-    name: "Member Name",
-    duration: "5 months",
-    loss: "-15 kg",            // TODO
-    before: "/images/transformations/before4.jpg",
-    after: "/images/transformations/after4.jpg",
-  },
+  }
 ];
 
 // ── Drag-to-reveal slider card ──────────────────────────────────────────────
