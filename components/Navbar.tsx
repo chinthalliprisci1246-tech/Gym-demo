@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
+        <Link href="#/" className="flex items-center gap-2 group">
           <Image
             src="/logo1.png"
             alt="GYM-LOGO"
