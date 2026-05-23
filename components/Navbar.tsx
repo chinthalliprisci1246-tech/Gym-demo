@@ -35,17 +35,17 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <Image
-            src="/logo.png"
-            alt="Gym Logo"
-            width={32}
-            height={32}
+            src="/logo1.png"
+            alt="GYM-LOGO"
+            width={100}
+            height={100}
             className="rounded-sm"
           />
           <span
             className="font-bold text-white text-lg tracking-widest uppercase"
             style={{ fontFamily: "var(--font-bebas)", fontSize: "1.4rem" }}
           >
-            GYM LOGO {/* TODO */}
+             {/* TODO */}
           </span>
         </Link>
 

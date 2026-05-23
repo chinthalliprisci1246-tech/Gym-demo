@@ -1,3 +1,5 @@
+import Amenities from "@/components/Amenities";
+import Brands from "@/components/Brands";
 import Contact from "@/components/Contact";
 import Gallery from "@/components/Gallery";
 import Hero from "@/components/Hero";
@@ -19,6 +21,8 @@ export default function Home() {
       <Reviews />
       <MapSection />
       <Contact />
+      <Brands/>
+      <Amenities />
     </>
   );
 }
