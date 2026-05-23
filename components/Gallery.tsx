@@ -5,11 +5,11 @@ import Image from "next/image";
 // TODO: replace with your real image paths inside /public/
 const images = [
   "/gallery1.jpg",
-  "/gallery2.png",
+  
   "/gallery4.jpg",
   "/gallery6.jpg",
   "/gallery3.jpg",
-  "/gallery5.jpg",
+  
 ];
 
 const VIRTUAL_TOUR_URL = "https://sprintonfitness.com/tour/"; // TODO: update if URL changes

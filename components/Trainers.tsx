@@ -1,15 +1,14 @@
 "use client";
-import { useEffect, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 const trainers = [
   {
-    name: "Trainer Name",        // TODO
-    role: "Head Coach",          // TODO
-    cert: "ISSA Certified",      // TODO
-    bio: "Short bio here.",      // TODO
+    name: "Trainer Name",
+    role: "Head Coach",
+    cert: "ISSA Certified",
+    bio: "Short bio here.",
     photo: "/images/trainers/trainer1.jpg",
-    specialities: ["Strength", "Cardio"],        // TODO
+    specialities: ["Strength", "Cardio"],
   },
   {
     name: "Trainer Name",
@@ -29,34 +28,90 @@ const trainers = [
   },
 ];
 
+// Fallback avatar shown when the photo file doesn't exist yet
+function TrainerAvatar({ name, photo }: { name: string; photo: string }) {
+  const [imgError, setImgError] = useState(false);
+
+  const initials = name
+    .split(" ")
+    .filter(Boolean)
+    .map((w) => w[0].toUpperCase())
+    .slice(0, 2)
+    .join("");
+
+  if (imgError || !photo) {
+    return (
+      <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-800 to-zinc-900">
+        {/* Initials circle */}
+        <div className="w-24 h-24 rounded-full border-2 border-red-500/40 flex items-center justify-center bg-black/40 mb-3">
+          <span
+            className="text-4xl font-black text-red-400"
+            style={{ fontFamily: "var(--font-bebas)" }}
+          >
+            {initials || "?"}
+          </span>
+        </div>
+        <span className="text-white/20 text-xs tracking-widest uppercase">Photo coming soon</span>
+      </div>
+    );
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={photo}
+      alt={name}
+      onError={() => setImgError(true)}
+      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  );
+}
+
 export default function Trainers() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const init = async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
+    const cards = sectionRef.current?.querySelectorAll<HTMLElement>(".trainer-card");
+    if (!cards) return;
 
-      gsap.from(sectionRef.current!.querySelectorAll(".trainer-card"), {
-        opacity: 0,
-        y: 30,
-        stagger: 0.12,
-        duration: 0.6,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-      });
+    const init = async () => {
+      try {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.12,
+            duration: 0.6,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      } catch {
+        // If GSAP fails for any reason, make cards visible immediately
+        cards.forEach((c) => {
+          c.style.opacity = "1";
+          c.style.transform = "none";
+        });
+      }
     };
+
     init();
   }, []);
 
   return (
     <section id="trainers" ref={sectionRef} className="py-20 px-4 max-w-6xl mx-auto">
 
-      {/* ── About Us ─────────────────────────────────────────── */}
+      {/* ── About Us ──────────────────────────────────────── */}
       <div className="mb-20">
         <h2
           className="text-4xl md:text-6xl text-white mb-3 tracking-wide"
@@ -83,7 +138,7 @@ export default function Trainers() {
         </div>
       </div>
 
-      {/* ── Trainers ─────────────────────────────────────────── */}
+      {/* ── Trainers ──────────────────────────────────────── */}
       <h2
         className="text-4xl md:text-6xl text-white text-center mb-3 tracking-wide"
         style={{ fontFamily: "var(--font-bebas)" }}
@@ -97,26 +152,23 @@ export default function Trainers() {
         Expert coaches dedicated to your transformation
       </p>
 
-      <div className="grid gap-8 sm:grid-cols-3 md:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-3">
         {trainers.map((t, i) => (
           <div
             key={i}
+            style={{ opacity: 1 }}
             className="trainer-card group relative bg-white/5 border border-white/10
                        rounded-2xl overflow-hidden
                        hover:border-red-500/30 transition-all duration-300"
           >
-            {/* Photo */}
-            <div className="relative w-full aspect-square bg-white/10 overflow-hidden">
-              <Image
-                src={t.photo}
-                alt={t.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+            {/* Photo / Avatar */}
+            <div className="relative w-full aspect-square bg-zinc-900 overflow-hidden">
+              <TrainerAvatar name={t.name} photo={t.photo} />
+
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-              {/* Speciality tags — sit on top of photo */}
+              {/* Speciality tags */}
               <div className="absolute bottom-3 left-0 right-0 flex flex-wrap justify-center gap-1.5 px-3">
                 {t.specialities.map((s, j) => (
                   <span

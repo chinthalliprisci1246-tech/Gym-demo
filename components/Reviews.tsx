@@ -20,7 +20,6 @@ const reviews = [
     text: "Hands down the best gym in the city. The multi-floor setup, Zumba classes, and friendly staff create an atmosphere that keeps you coming back every day.",
     photo: "/reviews/arun.jpg",
   },
-  
 ];
 
 function StarRating({ stars }: { stars: number }) {
@@ -65,23 +64,40 @@ export default function Reviews() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const init = async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
+    const cards = sectionRef.current?.querySelectorAll<HTMLElement>(".review-card");
+    if (!cards) return;
 
-      gsap.from(sectionRef.current!.querySelectorAll(".review-card"), {
-        opacity: 0,
-        y: 30,
-        stagger: 0.12,
-        duration: 0.6,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-      });
+    const init = async () => {
+      try {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.12,
+            duration: 0.6,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      } catch {
+        // If GSAP fails for any reason, make cards visible immediately
+        cards.forEach((c) => {
+          c.style.opacity = "1";
+          c.style.transform = "none";
+        });
+      }
     };
+
     init();
   }, []);
 
@@ -107,6 +123,7 @@ export default function Reviews() {
         {reviews.map((r, i) => (
           <div
             key={i}
+            style={{ opacity: 1 }}
             className="review-card group relative bg-white/5 border border-white/10
                        rounded-2xl p-6 flex flex-col gap-4
                        hover:border-red-500/30 hover:bg-white/[0.07]
@@ -116,7 +133,7 @@ export default function Reviews() {
             <span className="absolute top-4 right-5 text-5xl text-white/5
                              group-hover:text-red-500/10 transition-colors duration-300
                              font-serif leading-none select-none">
-              
+              &ldquo;
             </span>
 
             {/* Stars */}
