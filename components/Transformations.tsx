@@ -55,26 +55,20 @@ function SliderCard({ t }: { t: typeof transformations[0] }) {
         onTouchMove={onTouchMove}
       >
         {/* AFTER — full width base */}
-        <div className="absolute inset-0 bg-white/10">
-          <Image src={t.after} alt="After" fill className="object-cover" />
-          <span className="absolute bottom-3 right-3 bg-red-500 text-white
-                           text-xs font-bold px-2 py-1 rounded tracking-wide">
-            AFTER
-          </span>
+        <div className="absolute inset-0 ">
+          <Image src={t.after} alt="" fill className="object-cover" />
+          <span className="absolute top-3 right-3 ...">AFTER</span>
         </div>
 
         {/* BEFORE — clipped left portion */}
         <div
-          className="absolute inset-0 overflow-hidden bg-white/10"
+          className="absolute inset-0 overflow-hidden"
           style={{ width: `${pct}%` }}
         >
-          <div className="absolute inset-0" style={{  }}>
-            <Image src={t.before} alt="Before" fill className="object-cover" />
-          </div>
-          <span className="absolute bottom-3 left-3 bg-black/70 text-white
-                           text-xs font-bold px-2 py-1 rounded tracking-wide">
-            BEFORE
-          </span>
+          
+            <Image src={t.before} alt="" fill className="object-cover" />
+          
+          <span className="absolute top-3 left-3 ...">BEFORE</span>
         </div>
 
         {/* Divider line */}

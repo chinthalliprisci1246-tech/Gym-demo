@@ -187,7 +187,7 @@ export default function Trainers() {
               <p className="text-red-400 text-sm font-semibold">{t.role}</p>
               <p className="text-white/30 text-xs">{t.cert}</p>
               <div className="h-px bg-white/10 my-2" />
-              <p className="text-white/50 text-sm leading-relaxed">{t.bio}</p>
+              <p className="text-white/40 text-sm leading-relaxed">{t.bio}</p>
             </div>
           </div>
         ))}
